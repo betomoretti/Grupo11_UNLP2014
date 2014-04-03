@@ -15,6 +15,12 @@ public class Usuario {
 	Suscripcion suscripcion;
 	Sesion sesionActual;
 
+	public Usuario(Date fechaDeNacimiento, String email, Date fechaSuscripcion, Catalogo catalogo) {
+		this.fechaDeNacimiento=fechaDeNacimiento;
+		this.email=email;
+		this.suscripcion=new Suscripcion(fechaSuscripcion);
+		this.gestor=new GestorDeContenidos(this, catalogo);
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -23,7 +29,7 @@ public class Usuario {
 		LocalDate birthdate = dt.toLocalDate();
 		return Years.yearsBetween(birthdate, new LocalDate()).getYears();
 	}
-	public Date getFechaDeNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaDeNacimiento;
 	}
 	public GestorDeContenidos getGestor() {

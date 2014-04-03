@@ -1,11 +1,18 @@
 package model;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 public class Temporada {
 	int numero;
 	Serie serie;
-	Collection<Episodio> episodios;
+	Collection<Episodio> episodios = new HashSet<Episodio>();
+	
+	public Temporada(Serie serie, int numero){
+		this.serie = serie;
+		this.numero = numero;
+		this.serie.agregarTemporada(this);
+	}
 	
 	public int getNumero() {
 		return numero;

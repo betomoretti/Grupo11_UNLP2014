@@ -46,6 +46,16 @@ public class UsuarioTest extends TestCase {
 				format.parse("09/09/2013"), catalogo);
 	}
 
+	public void testUsuario() {
+		String email = "carlos@carlos.net";
+		Usuario carlos = new Usuario(hace20anios, email, hace5anios,
+				new Catalogo());
+		assertEquals(carlos.getEmail(), email);
+		assertEquals(carlos.getFechaNacimiento(), hace20anios);
+		assertNotNull(carlos.getGestor());
+		assertNotNull(carlos.getSuscripcion());
+	}
+
 	public void testEdad() {
 		assertEquals(20, miguel.edad());
 		assertEquals(19, juan.edad());

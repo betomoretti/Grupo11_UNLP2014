@@ -6,6 +6,10 @@ public class Sesion {
 	Date fecha;
 	Reproduccion reproduccion;
 	
+	public Sesion(Reproduccion reproduccion, Date fecha) {
+		this.reproduccion=reproduccion;
+		this.fecha=fecha;
+	}
 	public Date getFecha() {
 		return fecha;
 	}

@@ -1,13 +1,13 @@
 package model;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 public class Serie extends Contenido {
-	Collection<Temporada> temporadas;
+	Collection<Temporada> temporadas = new HashSet<Temporada>();
 
 	public Serie(String titulo, int edadMinima) {
-		this.titulo=titulo;
-		this.edadMinima=edadMinima;
+		super(titulo, edadMinima);
 	}
 	public Collection<Temporada> getTemporadas() {
 		return temporadas;
@@ -16,5 +16,7 @@ public class Serie extends Contenido {
 	public boolean esSerie(){
 		return true;
 	}
-	
+	public void agregarTemporada(Temporada temporada){
+		temporadas.add(temporada);
+	}
 }

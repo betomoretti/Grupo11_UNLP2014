@@ -2,6 +2,7 @@ package tests;
 
 import junit.framework.TestCase;
 import model.*;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,6 +30,13 @@ public class PeliculaTest extends TestCase {
 		pulp_fiction = new Pelicula("Pulp Fiction", 16, 135000);
 		shrek = new Pelicula("shrek", 4, 135000);
 		bambi = new Pelicula("bambi", 0, 142000);
+	}
+
+	public void testPelicula() {
+		Pelicula saw = new Pelicula("saw", 18, 180000000);
+		assertEquals(saw.getTitulo(), "saw");
+		assertEquals(saw.getEdadMinima(), 18);
+		assertEquals(saw.getDuracion(), 180000000);
 	}
 
 	public void testEsPelicula() {

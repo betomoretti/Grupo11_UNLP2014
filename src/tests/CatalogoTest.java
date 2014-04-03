@@ -32,6 +32,12 @@ public class CatalogoTest extends TestCase {
 		catalogo.agregar(breaking_bad);
 		catalogo.agregar(lost);
 	}
+	
+	public void testCatalogo(){
+		Catalogo nuevo = new Catalogo();
+		assertNotNull(nuevo.getContenidos());
+		assertEquals(nuevo.getContenidos().size(), 0);
+	}
 
 	public void testGetContenidos() {
 		assertTrue(catalogo.getContenidos().contains(pulp_fiction));

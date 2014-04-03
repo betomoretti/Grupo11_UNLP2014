@@ -63,6 +63,14 @@ public class GestorDeContenidosTest extends TestCase {
 		gestorNene = nene.getGestor();
 		gestorAdulto = adulto.getGestor();
 	}
+	
+	public void testGestorDeContenidos(){
+		GestorDeContenidos nuevo = new GestorDeContenidos(nene, catalogo);
+		assertEquals(nuevo.getUsuario(), nene);
+		assertEquals(nuevo.getCatalogo(), catalogo);
+		assertNotNull(nuevo.getReproducciones());
+		assertEquals(nuevo.getReproducciones().size(), 0);
+	}
 
 	public void testEpisodiosVistos() {
 		assertEquals(0, gestorNene.episodiosVistos().size());
@@ -128,8 +136,8 @@ public class GestorDeContenidosTest extends TestCase {
 		gestorNene.registrarReproduccion(catInTheBag, new Date(), 100000);
 		assertTrue(gestorNene.getReproducciones().isEmpty());
 	}
-	
-	public void testPuedeReproducir(){
+
+	public void testPuedeReproducir() {
 		assertTrue(gestorNene.puedeReproducir(shrek));
 		assertTrue(gestorNene.puedeReproducir(bambi));
 		assertFalse(gestorNene.puedeReproducir(pulp_fiction));
@@ -147,7 +155,7 @@ public class GestorDeContenidosTest extends TestCase {
 		gestorAdulto.registrarReproduccion(shrek, new Date(), 100000);
 		assertFalse(gestorNene.puedeReproducir(bambi));
 		assertFalse(gestorNene.puedeReproducir(pulp_fiction));
-		assertFalse(gestorAdulto.puedeReproducir(bambi));	
+		assertFalse(gestorAdulto.puedeReproducir(bambi));
 	}
 
 	public void testGetReproducciones() {

@@ -15,6 +15,14 @@ public class SerieTest extends TestCase {
 		barneyS02 = new Temporada(barney, 2);
 	}
 
+	public void testSerie() {
+		Serie lost = new Serie("lost", 12);
+		assertEquals(lost.getTitulo(), "lost");
+		assertEquals(lost.getEdadMinima(), 12);
+		assertNotNull(lost.getTemporadas());
+		assertEquals(lost.getTemporadas().size(), 0);
+	}
+
 	public void testEsSerie() {
 		assertTrue(barney.esSerie());
 	}

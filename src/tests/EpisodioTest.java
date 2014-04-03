@@ -39,6 +39,15 @@ public class EpisodioTest extends TestCase {
 		queen = new Episodio(20000, 1, "The Queen of Make Believe", barneyS01);
 	}
 
+	public void testEpisodio() {
+		Episodio nuevo = new Episodio(2000000, 2, "New episode", barneyS01);
+		assertEquals(nuevo.getDuracion(), 2000000);
+		assertEquals(nuevo.getNumero(), 2);
+		assertEquals(nuevo.getTitulo(), "New episode");
+		assertEquals(nuevo.getTemporada(), barneyS01);
+		assertTrue(barneyS01.getEpisodios().contains(nuevo));
+	}
+
 	public void testEsPelicula() {
 		assertFalse(queen.esPelicula());
 	}

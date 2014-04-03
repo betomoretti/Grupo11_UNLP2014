@@ -6,10 +6,16 @@ public class Reproduccion {
 	Date fecha;
 	Long tiempo;
 	Reproducible reproducible;
+	
+	public Reproduccion(Reproducible reproducible, Date fecha, long tiempo){
+		this.reproducible=reproducible;
+		this.fecha=fecha;
+		this.tiempo=tiempo;
+	}
 	public Date getFecha() {
 		return fecha;
 	}
-	public Long getTiempo() {
+	public long getTiempo() {
 		return tiempo;
 	}
 	public Reproducible getReproducible() {

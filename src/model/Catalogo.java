@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Collection;
 
 public class Catalogo {
-	Collection<Contenido> contenidos;
+	private Collection<Contenido> contenidos = new HashSet<Contenido>();
 
 	public Collection<Contenido> getContenidos() {
 		return contenidos;
@@ -12,7 +12,7 @@ public class Catalogo {
 	public Collection<Pelicula> getPeliculas(){
 		Collection<Pelicula> peliculas = new HashSet<Pelicula>();
 		for (Contenido contenido: contenidos){
-			if (contenido.esSerie())
+			if (contenido.esPelicula())
 				peliculas.add((Pelicula)contenido);
 		}
 		return peliculas;
