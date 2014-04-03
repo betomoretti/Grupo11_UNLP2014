@@ -2,13 +2,15 @@ package model;
 
 import java.util.Date;
 
-
-
 public class Suscripcion {
 	
 	Categoria categoria;
 	Date fecha;
 	
+	public Suscripcion(Date date) {
+		fecha=date;
+	}
+
 	public Date getFecha(){
 		return fecha;
 	}
@@ -20,7 +22,7 @@ public class Suscripcion {
 	}
 	
 	public int limiteDeReproducciones(){
-		return this.categoria.limiteReproducciones();
+		return this.categoria.limiteDeReproducciones();
 	}
 	
 }

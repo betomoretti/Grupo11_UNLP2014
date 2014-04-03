@@ -1,10 +1,10 @@
 package model;
-//ver si tiene que ser abstract
-public abstract class Categoria {
+
+public class Categoria {
 
 int limiteReproducciones;
 
-public int limiteReproducciones(){
+public int limiteDeReproducciones(){
 	return limiteReproducciones; 
 }
 

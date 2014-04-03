@@ -9,10 +9,11 @@ public class Sitio {
 	public Collection<Usuario> getUsuarios() {
 		return usuarios;
 	}
-	public Catalogo getCatalogo() {
-		return catalogo;
-	}
 	public void registrarUsuario(Usuario usuario){
 		usuarios.add(usuario);
 	}
+	public Catalogo getCatalogo() {
+		return catalogo;
+	}
+
 }
