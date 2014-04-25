@@ -5,14 +5,13 @@ import java.util.Date;
 public class Suscripcion {
 	
 	Categoria categoria = new CategoriaInvitado();
-	Date fecha;
 	
 	public Suscripcion(Date date) {
-		fecha=date;
+		categoria.date=date;
 	}
 
 	public Date getFecha(){
-		return fecha;
+		return this.categoria.date;
 	}
 	
 	public void pasarANormal(){
