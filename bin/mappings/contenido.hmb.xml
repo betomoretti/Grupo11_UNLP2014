@@ -1,5 +1,22 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN""http://hibernate.sourceforge.net/hibernate
--mapping-3.0.dtd">
-<hibernate-mapping>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN""http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model">
+	<class name="Contenido" table="CONTENIDO">
+		<id name="idContenido" column="ID_CONTENIDO">
+			<generator class="native"/>
+		</id>
+
+		<discriminator column="TIPO_CONTENIDO" type="string"/>
+
+		<property name="titulo" column="TITULO"/>
+		<property name="edadMinima" column="EDAD_MINIMA"/>
+
+		<subclass name="Pelicula" discriminator-value="PELICULA">
+			<property name="duracion" column="DURACION"/>
+		</subclass>
+
+		<subclass name="Serie" discriminator-value="SERIE">
+		</subclass>
+	</class>
 </hibernate-mapping>
