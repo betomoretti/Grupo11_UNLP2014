@@ -38,6 +38,13 @@ public class Usuario {
 	public Suscripcion getSuscripcion() {
 		return suscripcion;
 	}
-
-
+	
+	
+	public void setSesion(Sesion sesion) {
+		this.sesionActual = sesion;
+	}
+	
+	public Sesion getSesion() {
+		return sesionActual;
+	}
 }
