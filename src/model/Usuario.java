@@ -10,10 +10,24 @@ import org.joda.time.Years;
 public class Usuario {
 
 	String email;
+	int idUsuario;
 	Date fechaDeNacimiento;
 	GestorDeContenidos gestor;
 	Suscripcion suscripcion;
 	Sesion sesionActual;
+	
+	public Usuario() {}
+	
+	
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
 
 	public Usuario(Date fechaDeNacimiento, String email, Date fechaSuscripcion, Catalogo catalogo) {
 		this.fechaDeNacimiento=fechaDeNacimiento;

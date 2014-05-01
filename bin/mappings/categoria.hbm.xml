@@ -3,15 +3,15 @@
 -mapping-3.0.dtd">
 
 <hibernate-mapping package="model">
-<class name="Categoria" table="CATEGORIA">
-	<id name="idCategoria" column="ID_CATEGORIA">
-		<generator class="hilo"/>
-	</id>
-	<property name="date"/>
-	<property name="limiteDeReproducciones"/>
-	<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
-	</union-subclass>
-	<union-subclass name="CategoriaVip" table="CATEGORIA_VIP">
-	</union-subclass>
-</class>
+	<class name="Categoria" table="CATEGORIA">
+		<id name="idCategoria" column="ID_CATEGORIA">
+			<generator class="hilo"/>
+		</id>
+		<property name="date"/>
+		<property name="limiteDeReproducciones"/>
+		<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
+		</union-subclass>
+		<union-subclass name="CategoriaVip" table="CATEGORIA_VIP">
+		</union-subclass>
+	</class>
 </hibernate-mapping>
