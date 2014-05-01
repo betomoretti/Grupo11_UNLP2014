@@ -1,63 +1,13 @@
-Configuración de Hibernate a través de un XML
-•
-Archivo XML
-•
-El nombre por defecto es hibernate.cfg.xml
-<hibernate
--
-configuration>
-<session
--
-factory>
-<property
-name
-="
-hibernate.connection.driver_class
-">
-org.hsqldb.jdbcDriver
-</property>
-<property name
-="
-hibernate.connection.url
-">
-jdbc:hsqldb:data/test
-</property>
-<property name="
-hibernate.connection.username
-">
-usuario
-</property>
-<property name
-="
-hibernate.connection.password
-">
-secreto
-</property>
-<property name
-="
-dialect
-">
-org.hibernate.dialect.HSQLDialect
-</property>
-<property name
-="
-show_sql
-">
-true
-</property>
-...
-<!
-–
-Mappings
---
->
-<mapping resource
-=“
-paquete/miClase.hbm.xml
-"/>
-</session
--
-factory>
-</hibernate
--
-configuration>
+<hibernate-configuration>
+	<session-factory>
+		<propertyname="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="hibernate.connection.url">jdbc:hsqldb:data/test</property>
+		<property name="hibernate.connection.username">usuario</property>
+		<property name="hibernate.connection.password">secreto</property>
+		<property name="dialectmajomajo">org.hibernate.dialect.HSQLDialect</property>
+		<property name="show_sql">true</property>
+
+		<!-->Mappings-->
+		<mapping resource="paquete/miClase.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>
