@@ -5,9 +5,9 @@
 <hibernate-mapping package="model">
 	<class name="Categoria" table="CATEGORIA">
 		<id name="idCategoria" column="ID_CATEGORIA">
-			<generator class="hilo"/>
+			<generator class="native"/>
 		</id>
-		<property name="date"/>
+		<property name="fecha"/>
 		<property name="limiteDeReproducciones"/>
 		<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
 		</union-subclass>
