@@ -8,6 +8,23 @@
 		<property name="show_sql">true</property>
 
 		<!--Mappings-->
-		<mapping resource="paquete/miClase.hbm.xml"/>
+
+		<mapping resource="mappings/catalogo.hbm.xml"/>
+		<mapping resource="mappings/categoria.hbm.xml"/>
+		<mapping resource="mappings/categoriainvitado.hbm.xml"/>
+		<mapping resource="mappings/categoriavip.hbm.xml"/>
+		<mapping resource="mappings/contenido.hbm.xml"/>
+		<mapping resource="mappings/episodio.hbm.xml"/>
+		<mapping resource="mappings/gestordecontenidos.hbm.xml"/>
+		<mapping resource="mappings/pelicula.hbm.xml"/>
+		<mapping resource="mappings/reproduccion.hbm.xml"/>
+		<mapping resource="mappings/reproducible.hbm.xml"/>
+		<mapping resource="mappings/serie.hbm.xml"/>
+		<mapping resource="mappings/sesion.hbm.xml"/>
+		<mapping resource="mappings/sitio.hbm.xml"/>
+		<mapping resource="mappings/suscripcion.hbm.xml"/>
+		<mapping resource="mappings/temporada.hbm.xml"/>
+		<mapping resource="mappings/usuario.hbm.xml"/>
+		
 	</session-factory>
 </hibernate-configuration>
