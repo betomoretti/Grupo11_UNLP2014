@@ -5,10 +5,21 @@ import java.util.Collection;
 import java.util.Date;
 
 public class GestorDeContenidos {
+	int idGestorDeContenidos;
 	Usuario usuario;
 	Collection<Reproduccion> reproducciones = new ArrayList<Reproduccion>();
 	Catalogo catalogo = new Catalogo();
 	
+	public GestorDeContenidos() {}
+	
+	public int getIdGestorDeContenidos() {
+		return idGestorDeContenidos;
+	}
+
+	public void setIdGestorDeContenidos(int idGestorDeContenidos) {
+		this.idGestorDeContenidos = idGestorDeContenidos;
+	}
+
 	public GestorDeContenidos(Usuario usuario, Catalogo catalogo) {
 		this.usuario=usuario;
 		this.catalogo=catalogo;

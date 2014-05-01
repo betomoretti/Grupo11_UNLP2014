@@ -3,9 +3,23 @@ package model;
 public abstract class Contenido {
 	String titulo;
 	int edadMinima;
+	int idContenido;
 	
 	public Contenido(){};
+
 	
+	public int getIdContenido() {
+		return idContenido;
+	}
+
+
+
+	public void setIdContenido(int id) {
+		this.idContenido = id;
+	}
+
+
+
 	public Contenido(String titulo, int edadMinima){
 		this.titulo=titulo;
 		this.edadMinima=edadMinima;
