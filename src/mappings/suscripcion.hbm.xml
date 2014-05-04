@@ -6,7 +6,6 @@
 		<id name="idSuscripcion" column="ID_SUSCRIPCION">
 			<generator class="native"/>
 		</id>
-
 		<many-to-one name="categoria" column="ID_CATEGORIA" unique="true" not-null="true"/>
 	</class>
 </hibernate-mapping>
