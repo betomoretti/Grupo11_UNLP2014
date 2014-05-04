@@ -11,8 +11,6 @@
 
 		<mapping resource="mappings/catalogo.hbm.xml"/>
 		<mapping resource="mappings/categoria.hbm.xml"/>
-		<mapping resource="mappings/categoriainvitado.hbm.xml"/>
-		<mapping resource="mappings/categoriavip.hbm.xml"/>
 		<mapping resource="mappings/contenido.hbm.xml"/>
 		<mapping resource="mappings/episodio.hbm.xml"/>
 		<mapping resource="mappings/gestordecontenidos.hbm.xml"/>
