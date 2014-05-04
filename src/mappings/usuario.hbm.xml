@@ -1,5 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN""http://hibernate.sourceforge.net/hibernate
 -mapping-3.0.dtd">
-<hibernate-mapping>
+<hibernate-mapping package="model">
+	<class name="Usuario">
+		<id name="idUsuario" column="ID_GESTOR_DE_CONTENIDO">
+			<generator class="native"/>
+		</id>
+		<property name="email" column="EMAIL"/>
+		<property name="fechaDeNacimiento" column="FECHA_DE_NACIMIENTO"/>
+		<one-to-one name="gestor" property-ref="usuario"/>	
+		<many-to-one name="suscripcion" column="ID_SUSCRIPCION" unique="true" not-null="true" cascade="all"/>
+		<many-to-one name="sesionActual" column="ID_SESION" unique="true" not-null="true" cascade="all"/>
+	</class>
 </hibernate-mapping>

@@ -7,8 +7,8 @@
 		<id name="idCategoria" column="ID_CATEGORIA">
 			<generator class="native"/>
 		</id>
-		<property name="fecha"/>
-		<property name="limiteDeReproducciones"/>
+		<property name="fecha" column="FECHA"/>
+		<property name="limiteDeReproducciones" column="LIMITE_DE_REPROCCIONES"/>
 		<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
 		</union-subclass>
 		<union-subclass name="CategoriaVip" table="CATEGORIA_VIP">

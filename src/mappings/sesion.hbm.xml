@@ -5,8 +5,8 @@
 <hibernate-mapping package="model">
 	<class name="Sesion" table="SESION">
 		<id name="idSesion" column="ID_SESION">
-			<generator class="hilo"/>
+			<generator class="native"/>
 		</id>
-		<property name="fecha"/>
+		<property name="fecha" column="FECHA"/>
 	</class>
 </hibernate-mapping>

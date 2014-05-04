@@ -3,4 +3,15 @@
 -mapping-3.0.dtd">
 
 <hibernate-mapping package="model">
+	<class name="GestorDeContenido">
+		<id name="idGestorDeContenido" column="ID_GESTOR_DE_CONTENIDO">
+			<generator class="native"/>
+		</id>
+		<list name="reproducciones" cascade="all">
+			<key column="ID_GESTOR_DE_CONTENIDO" not-null="true" />
+			<one-to-many class="Reproduccion"/>
+		</list>
+		<many-to-one name="usuario" column="ID_USUARIO" unique="true" not-null="true" cascade="all"/>
+		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true" not-null="true" cascade="all"/>
+	</class>
 </hibernate-mapping>
