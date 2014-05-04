@@ -7,6 +7,6 @@
 			<generator class="native"/>
 		</id>
 
-		<property name="categoria" column="CATEGORIA"/>
+		<many-to-one name="categoria" column="ID_CATEGORIA" unique="true" not-null="true"/>
 	</class>
 </hibernate-mapping>
