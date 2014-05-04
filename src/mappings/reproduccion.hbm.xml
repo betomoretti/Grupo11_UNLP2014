@@ -7,7 +7,7 @@
 			<generator class="native"/>
 		</id>
 
-		<many-to-any id-type="long" meta-type="String">
+		<many-to-any id-type="long" meta-type="string">
 			<meta-value value="Pelicula" class="Pelicula"/>
 			<meta-value value="Episodio" class="Episodio"/>
 
