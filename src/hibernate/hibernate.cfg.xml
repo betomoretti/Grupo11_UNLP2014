@@ -1,6 +1,6 @@
 <hibernate-configuration>
 	<session-factory>
-		<propertyname="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
 		<property name="hibernate.connection.url">jdbc:hsqldb:data/test</property>
 		<property name="hibernate.connection.username">bd2</property>
 		<property name="hibernate.connection.password">bd2</property>
