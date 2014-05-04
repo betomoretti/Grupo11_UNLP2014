@@ -2,4 +2,20 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN""http://hibernate.sourceforge.net/hibernate
 -mapping-3.0.dtd">
 <hibernate-mapping>
+	<class name="Reproduccion" table="REPRODUCCION">
+		<id name="idReproduccion" column="ID_REPRODUCCION">
+			<generator class="native"/>
+		</id>
+
+		<many-to-any id-type="long" meta-type="String">
+			<meta-value value="Pelicula" class="Pelicula"/>
+			<meta-value value="Episodio" class="Episodio"/>
+
+			<column name="TipoReproducible" not-null="true"/>
+			<column name="idReproducible" not-null="true"/>
+		</many-to-any>
+
+		<property name="fecha" column="FECHA"/>
+		<property name="tiempo" column="DURACION"/>
+	</class>
 </hibernate-mapping>

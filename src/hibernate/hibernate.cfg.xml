@@ -18,7 +18,6 @@
 		<mapping resource="mappings/gestordecontenidos.hbm.xml"/>
 		<mapping resource="mappings/pelicula.hbm.xml"/>
 		<mapping resource="mappings/reproduccion.hbm.xml"/>
-		<mapping resource="mappings/reproducible.hbm.xml"/>
 		<mapping resource="mappings/serie.hbm.xml"/>
 		<mapping resource="mappings/sesion.hbm.xml"/>
 		<mapping resource="mappings/sitio.hbm.xml"/>
