@@ -7,6 +7,10 @@ public class Catalogo {
 	int idCatalogo;
 	private Collection<Contenido> contenidos = new HashSet<Contenido>();
 	
+	public void setContenidos(Collection<Contenido> contenidos) {
+		this.contenidos = contenidos;
+	}
+
 	public Catalogo(){}
 	
 	public int getIdCatalogo() {

@@ -28,9 +28,19 @@ public abstract class Contenido {
 	public String getTitulo() {
 		return titulo;
 	}
+	
+	public void setTitulo( String titulo ) {
+		this.titulo = titulo;
+	}
+	
 	public int getEdadMinima() {
 		return edadMinima;
 	}
+	
+	public void setEdadMinima(int edadMinima) {
+		this.edadMinima = edadMinima;
+	}
+	
 	public boolean esPelicula(){
 		return false;
 	}

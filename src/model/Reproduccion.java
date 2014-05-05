@@ -26,14 +26,29 @@ public class Reproduccion {
 		this.fecha=fecha;
 		this.tiempo=tiempo;
 	}
+	
 	public Date getFecha() {
 		return fecha;
 	}
+	
+	public void setFecha( Date fecha ) {
+		this.fecha = fecha;
+	}
+	
 	public long getTiempo() {
 		return tiempo;
 	}
+	
+	public void setTiempo( long tiempo ) {
+		this.tiempo = tiempo;
+	}
+	
 	public Reproducible getReproducible() {
 		return reproducible;
+	}
+	
+	public void setReproducible( Reproducible reproducible ) {
+		this.reproducible = reproducible;
 	}
 	
 }

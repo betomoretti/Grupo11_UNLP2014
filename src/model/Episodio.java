@@ -28,9 +28,19 @@ public class Episodio implements Reproducible{
 	public String getTitulo() {
 		return titulo;
 	}
+	
+	public void setTitulo( String titulo ) {
+		this.titulo = titulo;
+	}
+	
 	public long getDuracion() {
 		return duracion;
 	}
+	
+	public void setDuracion( long duracion ) {
+		this.duracion = duracion;
+	}
+	
 	public int getEdadMinima(){
 		return temporada.getEdadMinima();
 	}
@@ -43,11 +53,21 @@ public class Episodio implements Reproducible{
 	public boolean esEpisodio(){
 		return true;
 	}
+	
 	public int getNumero() {
 		return numero;
 	}
+	
+	public void setNumero( int numero ) {
+		this.numero = numero;
+	}
+	
 	public Temporada getTemporada() {
 		return temporada;
+	}
+	
+	public void setTemporada( Temporada temporada ) {
+		this.temporada = temporada;
 	}
 
 	

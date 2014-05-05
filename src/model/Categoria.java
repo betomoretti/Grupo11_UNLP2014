@@ -9,6 +9,22 @@ public class Categoria {
 	
 	public Categoria(){}
 	
+	public int getLimiteDeReproducciones() {
+		return limiteDeReproducciones;
+	}
+
+	public void setLimiteDeReproducciones(int limiteDeReproducciones) {
+		this.limiteDeReproducciones = limiteDeReproducciones;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
 	public int getIdCategoria() {
 		return idCategoria;
 	}

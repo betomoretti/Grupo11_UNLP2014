@@ -10,6 +10,18 @@ public class GestorDeContenidos {
 	Collection<Reproduccion> reproducciones = new ArrayList<Reproduccion>();
 	Catalogo catalogo = new Catalogo();
 	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setReproducciones(Collection<Reproduccion> reproducciones) {
+		this.reproducciones = reproducciones;
+	}
+
+	public void setCatalogo(Catalogo catalogo) {
+		this.catalogo = catalogo;
+	}
+
 	public GestorDeContenidos() {}
 	
 	public int getIdGestorDeContenidos() {

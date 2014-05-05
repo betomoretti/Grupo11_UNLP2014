@@ -19,6 +19,41 @@ public class Usuario {
 	public Usuario() {}
 	
 	
+	public Date getFechaDeNacimiento() {
+		return fechaDeNacimiento;
+	}
+
+
+	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
+		this.fechaDeNacimiento = fechaDeNacimiento;
+	}
+
+
+	public Sesion getSesionActual() {
+		return sesionActual;
+	}
+
+
+	public void setSesionActual(Sesion sesionActual) {
+		this.sesionActual = sesionActual;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public void setGestor(GestorDeContenidos gestor) {
+		this.gestor = gestor;
+	}
+
+
+	public void setSuscripcion(Suscripcion suscripcion) {
+		this.suscripcion = suscripcion;
+	}
+
+
 	public int getIdUsuario() {
 		return idUsuario;
 	}

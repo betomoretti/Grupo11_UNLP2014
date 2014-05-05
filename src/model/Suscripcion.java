@@ -7,6 +7,14 @@ public class Suscripcion {
 	int idSuscripcion;
 	Categoria categoria = new CategoriaInvitado();
 	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	public Suscripcion() {}
 	
 	public Suscripcion(Date date) {

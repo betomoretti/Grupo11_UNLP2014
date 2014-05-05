@@ -11,6 +11,14 @@ public class Sesion {
 		super();
 	}
 
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setReproduccion(Reproduccion reproduccion) {
+		this.reproduccion = reproduccion;
+	}
+
 	public int getIdSesion() {
 		return this.idSesion;
 	}

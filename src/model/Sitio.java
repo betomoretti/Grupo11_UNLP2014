@@ -11,6 +11,16 @@ public class Sitio {
 	public Sitio() {}
 	
 	
+	public void setUsuarios(Collection<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+
+	public void setCatalogo(Catalogo catalogo) {
+		this.catalogo = catalogo;
+	}
+
+
 	public int getIdSitio() {
 		return idSitio;
 	}

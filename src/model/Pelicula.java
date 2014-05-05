@@ -10,13 +10,13 @@ public class Pelicula extends Contenido implements Reproducible{
 		return idPelicula;
 	}
 
-
+	public void setDuracion(long duracion) {
+		this.duracion = duracion;
+	}
 
 	public void setIdPelicula(int idPelicula) {
 		this.idPelicula = idPelicula;
 	}
-
-
 
 	public Pelicula(String titulo, int edadMinima, long duracion) {
 		super(titulo, edadMinima);

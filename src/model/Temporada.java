@@ -31,12 +31,27 @@ public class Temporada {
 	public int getNumero() {
 		return numero;
 	}
+	
+	public void setNumero( int numero ) {
+		this.numero = numero;
+	}
+	
 	public Serie getSerie() {
 		return serie;
 	}
+	
+	public void setSerie( Serie serie ) {
+		this.serie = serie;
+	}
+
 	public Collection<Episodio> getEpisodios() {
 		return episodios;
 	}
+	
+	public void setEpisodios( Collection<Episodio> episodios ) {
+		this.episodios = episodios;
+	}
+	
 	public void agregarEpisodio(Episodio episodio){
 		episodios.add(episodio);
 	}
