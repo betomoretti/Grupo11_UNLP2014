@@ -1,22 +1,22 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
-		<property name="hibernate.connection.url">jdbc:hsqldb:data/test</property>
+		<property name='connection.driver_class'>com.mysql.jdbc.Driver</property>
+		<property name='connection.url'>jdbc:mysql://localhost:3306/GRUPO11</property>
 		<property name="hibernate.connection.username">bd2</property>
 		<property name="hibernate.connection.password">bd2</property>
-		<property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">true</property>
 
 		<!--Mappings-->
-
 		<mapping resource="mappings/catalogo.hbm.xml"/>
 		<mapping resource="mappings/categoria.hbm.xml"/>
-		<mapping resource="mappings/contenido.hbm.xml"/>
 		<mapping resource="mappings/episodio.hbm.xml"/>
+		<mapping resource="mappings/contenido.hbm.xml"/>
 		<mapping resource="mappings/gestordecontenidos.hbm.xml"/>
-		<mapping resource="mappings/pelicula.hbm.xml"/>
 		<mapping resource="mappings/reproduccion.hbm.xml"/>
-		<mapping resource="mappings/serie.hbm.xml"/>
 		<mapping resource="mappings/sesion.hbm.xml"/>
 		<mapping resource="mappings/sitio.hbm.xml"/>
 		<mapping resource="mappings/suscripcion.hbm.xml"/>
