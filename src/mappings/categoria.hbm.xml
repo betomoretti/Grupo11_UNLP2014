@@ -1,17 +1,15 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN""http://hibernate.sourceforge.net/hibernate
--mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="model">
 	<class name="Categoria" table="CATEGORIA">
 		<id name="idCategoria" column="ID_CATEGORIA">
-			<generator class="native"/>
+			<generator class="hilo"/>
 		</id>
 		<property name="fecha" column="FECHA"/>
 		<property name="limiteDeReproducciones" column="LIMITE_DE_REPROCCIONES"/>
-		<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
-		</union-subclass>
-		<union-subclass name="CategoriaVip" table="CATEGORIA_VIP">
-		</union-subclass>
+
+		<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO"></union-subclass>
+		<union-subclass name="CategoriaVIP" table="CATEGORIA_VIP"></union-subclass>
 	</class>
 </hibernate-mapping>

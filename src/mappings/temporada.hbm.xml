@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN""http://hibernate.sourceforge.net/hibernate
--mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
 <hibernate-mapping package="model">
 	<class name="Temporada" table="TEMPORADA">
 		<id name="idTemporada" column="ID_TEMPORADA">
@@ -9,11 +9,11 @@
 
 		<property name="numero" column="NUMERO"/>
 
-		<set name="episodios" cascade="all">
-			<key column="ID_EPISODIO" not-null="true" />
+		<set name="episodios" inverse="true" cascade="all">
+			<key column="ID_TEMPORADA" not-null="true" />
 			<one-to-many class="Episodio"/>
 		</set>
-
+		
 		<many-to-one name="serie" column="ID_SERIE" unique="true" not-null="true"/>
 	</class>
 </hibernate-mapping>

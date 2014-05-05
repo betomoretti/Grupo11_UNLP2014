@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN""http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
 
 <hibernate-mapping package="model">
 	<class name="Episodio" table="EPISODIO">
@@ -7,7 +8,7 @@
 			<generator class="native"/>
 		</id>
 
-		<many-to-one name="temporada" column="ID_TEMPORADA" unique="true" not-null="true"/>
+		<many-to-one name="temporada" column="ID_TEMPORADA" not-null="true" cascade="all"/>
 
 		<property name="titulo" column="TITULO"/>
 		<property name="duracion" column="DURACION"/>
