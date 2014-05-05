@@ -16,7 +16,7 @@
 		</many-to-any> -->
 
 
-		<any name="reproducible" id-type="long" meta-type="string">
+		<any name="reproducible" id-type="int" meta-type="string">
 			<meta-value value="PELICULA" class="Pelicula"/>
 			<meta-value value="EPISODIO" class="Episodio"/>
 

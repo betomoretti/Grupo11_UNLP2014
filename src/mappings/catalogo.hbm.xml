@@ -6,8 +6,9 @@
 		<id name="idCatalogo" column="ID_CATALOGO">
 			<generator class="native"/>
 		</id>
+
 		<set name="contenidos" cascade="all">
-			<key column="ID_CATALOGO" not-null="true" />
+			<key column="ID_CATALOGO"/>
 			<one-to-many class="Contenido"/>
 		</set>
 	</class>

@@ -7,11 +7,11 @@
 			<generator class="native"/>
 		</id>
 		<list name="reproducciones" cascade="all">
-			<key column="ID_GESTOR_DE_CONTENIDOS" not-null="true" />
+			<key column="ID_GESTOR_DE_CONTENIDOS" />
 			<index column="idx"/>
 			<one-to-many class="Reproduccion"/>
 		</list>
-		<many-to-one name="usuario" column="ID_USUARIO" unique="true" not-null="true" cascade="all"/>
-		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true" not-null="true" cascade="all"/>
+		<many-to-one name="usuario" column="ID_USUARIO" unique="true" cascade="all" not-null="true"/>
+		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true" cascade="all"/>
 	</class>
 </hibernate-mapping>

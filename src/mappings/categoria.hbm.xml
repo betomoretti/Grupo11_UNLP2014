@@ -7,7 +7,7 @@
 			<generator class="hilo"/>
 		</id>
 		<property name="fecha" column="FECHA"/>
-		<property name="limiteDeReproducciones" column="LIMITE_DE_REPROCCIONES"/>
+		<property name="limiteDeReproducciones" column="LIMITE_DE_REPRODUCCIONES"/>
 
 		<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO"></union-subclass>
 		<union-subclass name="CategoriaVIP" table="CATEGORIA_VIP"></union-subclass>

@@ -10,10 +10,10 @@
 		<property name="numero" column="NUMERO"/>
 
 		<set name="episodios" inverse="true" cascade="all">
-			<key column="ID_TEMPORADA" not-null="true" />
+			<key column="ID_TEMPORADA"/>
 			<one-to-many class="Episodio"/>
 		</set>
 		
-		<many-to-one name="serie" column="ID_SERIE" unique="true" not-null="true"/>
+		<many-to-one name="serie" column="ID_SERIE" unique="true"/>
 	</class>
 </hibernate-mapping>
