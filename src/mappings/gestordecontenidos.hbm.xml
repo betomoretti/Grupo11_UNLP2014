@@ -12,6 +12,6 @@
 			<one-to-many class="Reproduccion"/>
 		</list>
 		<many-to-one name="usuario" column="ID_USUARIO" unique="true" cascade="all" not-null="true"/>
-		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true" cascade="all"/>
+		<many-to-one name="catalogo" column="ID_CATALOGO" cascade="all" not-null="true"/>
 	</class>
 </hibernate-mapping>
