@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model">
+
+	<class name="Catalogo" table="CATALOGO">
+		<id name="idCatalogo" column="ID_CATALOGO">
+			<generator class="native"/>
+		</id>
+
+		<set name="contenidos" cascade="all">
+			<key column="ID_CATALOGO"/>
+			<one-to-many class="Contenido"/>
+		</set>
+	</class>
+
+	<class name="Categoria" table="CATEGORIA">
+		<id name="idCategoria" column="ID_CATEGORIA">
+			<generator class="hilo"/>
+		</id>
+		<property name="fecha" column="FECHA"/>
+		<property name="limiteDeReproducciones" column="LIMITE_DE_REPRODUCCIONES"/>
+
+		<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO"></union-subclass>
+		<union-subclass name="CategoriaVIP" table="CATEGORIA_VIP"></union-subclass>
+	</class>
+
+	<class name="Episodio" table="EPISODIO">
+		<id name="idEpisodio" column="ID_EPISODIO">
+			<generator class="native"/>
+		</id>
+
+		<many-to-one name="temporada" column="ID_TEMPORADA" cascade="all"/>
+
+		<property name="titulo" column="TITULO"/>
+		<property name="duracion" column="DURACION"/>
+		<property name="numero" column="NUMERO"/>
+	</class>
+
+	<class name="Contenido" table="CONTENIDO">
+		<id name="idContenido" column="ID_CONTENIDO">
+			<generator class="native"/>
+		</id>
+
+		<discriminator column="TIPO_CONTENIDO" type="string"/>
+
+		<property name="titulo" column="TITULO"/>
+		<property name="edadMinima" column="EDAD_MINIMA"/>
+
+		<subclass name="Pelicula" discriminator-value="PELICULA">
+			<property name="duracion" column="DURACION"/>
+		</subclass>
+
+		<subclass name="Serie" discriminator-value="SERIE">
+		</subclass>
+	</class>
+
+	<class name="GestorDeContenidos" table="GESTOR_DE_CONTENIDOS">
+		<id name="idGestorDeContenidos" column="ID_GESTOR_DE_CONTENIDOS">
+			<generator class="native"/>
+		</id>
+		<list name="reproducciones" cascade="all">
+			<key column="ID_GESTOR_DE_CONTENIDOS" />
+			<index column="idx"/>
+			<one-to-many class="Reproduccion"/>
+		</list>
+		<many-to-one name="usuario" column="ID_USUARIO" unique="true" cascade="all" not-null="true"/>
+		<many-to-one name="catalogo" column="ID_CATALOGO" cascade="all" not-null="true"/>
+	</class>
+
+	<class name="Reproduccion" table="REPRODUCCION">
+		<id name="idReproduccion" column="ID_REPRODUCCION">
+			<generator class="native"/>
+		</id>
+		<any name="reproducible" id-type="int" meta-type="string" cascade="all">
+			<meta-value value="PELICULA" class="Pelicula"/>
+			<meta-value value="EPISODIO" class="Episodio"/>
+
+			<column name="nombre"/>
+			<column name="id"/> 
+		</any>
+		<property name="fecha" column="FECHA"/>
+		<property name="tiempo" column="DURACION"/>
+	</class>
+
+	<class name="Sesion" table="SESION">
+		<id name="idSesion" column="ID_SESION">
+			<generator class="native"/>
+		</id>
+		<property name="fecha" column="FECHA"/>
+	</class>
+
+	<class name="Sitio" table="SITIO">
+		<id name="idSitio" column="ID_SITIO">
+			<generator class="native"/>
+		</id>
+		<set name="usuarios" cascade="all">
+			<key column="ID_SITIO" />
+			<one-to-many class="Usuario"/>
+		</set>
+		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"/>
+	</class>
+
+	<class name="Suscripcion" table="SUSCRIPCION">
+		<id name="idSuscripcion" column="ID_SUSCRIPCION">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="categoria" column="ID_CATEGORIA" unique="true" not-null="true" cascade="all"/>
+	</class>
+
+	<class name="Temporada" table="TEMPORADA">
+		<id name="idTemporada" column="ID_TEMPORADA">
+			<generator class="native"/>
+		</id>
+
+		<property name="numero" column="NUMERO"/>
+
+		<set name="episodios" inverse="true" cascade="all">
+			<key column="ID_TEMPORADA"/>
+			<one-to-many class="Episodio"/>
+		</set>
+		
+		<many-to-one name="serie" column="ID_SERIE" unique="true"/>
+	</class>
+
+	<class name="Usuario" table="USUARIO">
+		<id name="idUsuario" column="ID_USUARIO">
+			<generator class="native"/>
+		</id>
+		<property name="email" column="EMAIL"/>
+		<property name="fechaDeNacimiento" column="FECHA_DE_NACIMIENTO"/>
+		<one-to-one name="gestor" property-ref="usuario" cascade="all"/>	
+		<many-to-one name="suscripcion" column="ID_SUSCRIPCION" unique="true" not-null="true" cascade="all"/>
+		<many-to-one name="sesionActual" column="ID_SESION" unique="true" cascade="all"/>
+	</class>
+
+</hibernate-mapping>

@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding="utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
 	<session-factory>
 		<property name='connection.driver_class'>com.mysql.jdbc.Driver</property>
@@ -11,17 +12,7 @@
 		<property name="show_sql">true</property>
 
 		<!--Mappings-->
-		<mapping resource="mappings/catalogo.hbm.xml"/>
-		<mapping resource="mappings/categoria.hbm.xml"/>
-		<mapping resource="mappings/episodio.hbm.xml"/>
-		<mapping resource="mappings/contenido.hbm.xml"/>
-		<mapping resource="mappings/gestordecontenidos.hbm.xml"/>
-		<mapping resource="mappings/reproduccion.hbm.xml"/>
-		<mapping resource="mappings/sesion.hbm.xml"/>
-		<mapping resource="mappings/sitio.hbm.xml"/>
-		<mapping resource="mappings/suscripcion.hbm.xml"/>
-		<mapping resource="mappings/temporada.hbm.xml"/>
-		<mapping resource="mappings/usuario.hbm.xml"/>
+		<mapping resource="hibernate/mappings.hbm.xml"/>
 		
 	</session-factory>
 </hibernate-configuration>
