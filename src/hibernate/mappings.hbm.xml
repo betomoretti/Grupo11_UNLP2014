@@ -21,8 +21,12 @@
 		<property name="fecha" column="FECHA"/>
 		<property name="limiteDeReproducciones" column="LIMITE_DE_REPRODUCCIONES"/>
 
-		<union-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO"></union-subclass>
-		<union-subclass name="CategoriaVIP" table="CATEGORIA_VIP"></union-subclass>
+		<joined-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
+			<key column="ID_CATEGORIA"/>
+		</joined-subclass>
+		<joined-subclass name="CategoriaVIP" table="CATEGORIA_VIP">
+			<key column="ID_CATEGORIA"/>
+		</joined-subclass>
 	</class>
 
 	<class name="Episodio" table="EPISODIO">
@@ -52,6 +56,10 @@
 		</subclass>
 
 		<subclass name="Serie" discriminator-value="SERIE">
+			<set name="temporadas" inverse="true" cascade="all">
+				<key column="ID_TEMPORADA" />
+				<one-to-many class="Temporada" />
+			</set>
 		</subclass>
 	</class>
 
@@ -88,6 +96,7 @@
 			<generator class="native"/>
 		</id>
 		<property name="fecha" column="FECHA"/>
+		<many-to-one name="reproduccion" column="ID_REPRODUCCION" unique="true" not-null="true" cascade="all" />
 	</class>
 
 	<class name="Sitio" table="SITIO">
@@ -120,7 +129,7 @@
 			<one-to-many class="Episodio"/>
 		</set>
 		
-		<many-to-one name="serie" column="ID_SERIE" unique="true"/>
+		<many-to-one name="serie" column="ID_SERIE" not-null="true" cascade="all"/>
 	</class>
 
 	<class name="Usuario" table="USUARIO">

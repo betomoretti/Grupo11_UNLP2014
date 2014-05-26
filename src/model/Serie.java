@@ -4,7 +4,11 @@ import java.util.Collection;
 import java.util.HashSet;
 
 public class Serie extends Contenido {
-	Collection<Temporada> temporadas = new HashSet<Temporada>();
+	private Collection<Temporada> temporadas = new HashSet<Temporada>();
+
+	public void setTemporadas(Collection<Temporada> temporadas) {
+		this.temporadas = temporadas;
+	}
 
 	public Serie() {}
 	

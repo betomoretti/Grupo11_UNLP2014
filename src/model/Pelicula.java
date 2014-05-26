@@ -1,8 +1,8 @@
 package model;
 
 public class Pelicula extends Contenido implements Reproducible{
-	int idPelicula;
-	long duracion;
+	private int idPelicula;
+	private long duracion;
 	
 	public Pelicula() {}
 	

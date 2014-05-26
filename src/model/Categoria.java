@@ -3,9 +3,9 @@ package model;
 import java.util.Date;
 
 public class Categoria {
-	int idCategoria;
-	int limiteDeReproducciones = 100;
-	Date fecha;
+	protected int idCategoria;
+	protected int limiteDeReproducciones = 100;
+	protected Date fecha;
 	
 	public Categoria(){}
 	

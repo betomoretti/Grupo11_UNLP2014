@@ -3,10 +3,10 @@ package model;
 import java.util.Date;
 
 public class Reproduccion {
-	int idReproduccion;
-	Date fecha;
-	Long tiempo;
-	Reproducible reproducible;
+	private int idReproduccion;
+	private Date fecha;
+	private Long tiempo;
+	private Reproducible reproducible;
 	
 	public Reproduccion() {}
 	

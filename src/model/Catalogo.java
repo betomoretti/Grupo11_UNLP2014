@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Collection;
 
 public class Catalogo {
-	int idCatalogo;
+	private int idCatalogo;
 	private Collection<Contenido> contenidos = new HashSet<Contenido>();
 	
 	public void setContenidos(Collection<Contenido> contenidos) {

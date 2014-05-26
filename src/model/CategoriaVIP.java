@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class CategoriaVIP extends Categoria {
 
-	int limiteDeReproducciones = 500;
-	Date date;
+	private int limiteDeReproducciones = 500;
+	private Date date;
 	public CategoriaVIP(){}
 	
 	public CategoriaVIP(int limiteDeReproducciones){

@@ -9,12 +9,12 @@ import org.joda.time.Years;
 
 public class Usuario {
 
-	String email;
-	int idUsuario;
-	Date fechaDeNacimiento;
-	GestorDeContenidos gestor;
-	Suscripcion suscripcion;
-	Sesion sesionActual;
+	private String email;
+	private int idUsuario;
+	private Date fechaDeNacimiento;
+	private GestorDeContenidos gestor;
+	private Suscripcion suscripcion;
+	private Sesion sesionActual;
 	
 	public Usuario() {}
 	

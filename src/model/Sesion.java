@@ -3,9 +3,9 @@ package model;
 import java.util.Date;
 
 public class Sesion {
-	int idSesion;
-	Date fecha;
-	Reproduccion reproduccion;
+	private int idSesion;
+	private Date fecha;
+	private Reproduccion reproduccion;
 	
 	public Sesion() {
 		super();

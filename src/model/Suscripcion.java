@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Suscripcion {
 	
-	int idSuscripcion;
-	Categoria categoria = new CategoriaInvitado();
+	private int idSuscripcion;
+	private Categoria categoria = new CategoriaInvitado();
 	
 	public Categoria getCategoria() {
 		return categoria;

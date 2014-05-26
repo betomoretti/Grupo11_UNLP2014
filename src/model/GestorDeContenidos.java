@@ -5,10 +5,10 @@ import java.util.Collection;
 import java.util.Date;
 
 public class GestorDeContenidos {
-	int idGestorDeContenidos;
-	Usuario usuario;
-	Collection<Reproduccion> reproducciones = new ArrayList<Reproduccion>();
-	Catalogo catalogo = new Catalogo();
+	private int idGestorDeContenidos;
+	private Usuario usuario;
+	private Collection<Reproduccion> reproducciones = new ArrayList<Reproduccion>();
+	private Catalogo catalogo = new Catalogo();
 	
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;

@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.HashSet;
 
 public class Sitio {
-	int idSitio;
-	Collection<Usuario> usuarios = new HashSet<Usuario>();
-	Catalogo catalogo = new Catalogo();
+	private int idSitio;
+	private Collection<Usuario> usuarios = new HashSet<Usuario>();
+	private Catalogo catalogo = new Catalogo();
 	
 	public Sitio() {}
 	

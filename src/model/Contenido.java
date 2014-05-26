@@ -1,9 +1,9 @@
 package model;
 
 public abstract class Contenido {
-	String titulo;
-	int edadMinima;
-	int idContenido;
+	protected String titulo;
+	protected int edadMinima;
+	protected int idContenido;
 	
 	public Contenido(){};
 

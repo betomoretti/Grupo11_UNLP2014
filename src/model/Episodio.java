@@ -1,11 +1,11 @@
 package model;
 
 public class Episodio implements Reproducible{
-	int idEpisodio;
-	long duracion;
-	int numero;
-	String titulo;
-	Temporada temporada;
+	private int idEpisodio;
+	private long duracion;
+	private int numero;
+	private String titulo;
+	private Temporada temporada;
 		
 	public int getIdEpisodio() {
 		return idEpisodio;

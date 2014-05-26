@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.HashSet;
 
 public class Temporada {
-	int idTemporada;
-	int numero;
-	Serie serie;
-	Collection<Episodio> episodios = new HashSet<Episodio>();
+	private int idTemporada;
+	private int numero;
+	private Serie serie;
+	private Collection<Episodio> episodios = new HashSet<Episodio>();
 	
 	public Temporada() {}
 	
