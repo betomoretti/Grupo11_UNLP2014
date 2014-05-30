@@ -43,8 +43,8 @@ public class BetoQueries {
 			Query hqlQuery = session.createQuery("from model.Serie");
 			List<Serie> list = (List<Serie>) hqlQuery.list();
 			for ( Serie serie : list) {
-				System.out.println("Titulo de serie:");
-				System.out.println(serie.getTitulo());
+				System.out.println("Titulo de serie:" + serie.getTitulo());
+				
 			}
 			session.flush();
 			tx.commit();
