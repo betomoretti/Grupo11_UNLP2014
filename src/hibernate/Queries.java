@@ -30,8 +30,8 @@ public class Queries {
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate/hibernate.cfg.xml");
 		consultaA(cfg);
-		consultaB(cfg, "Simpsons");
-		consultaE(cfg, 2);
+		consultaB(cfg, "Sim");
+		consultaE(cfg,new Long(10));
 	}
 	
 	/**
@@ -98,30 +98,30 @@ public class Queries {
 	 * @param cfg
 	 * @param number
 	 */
-	public static void consultaE(Configuration cfg, int number) {
-//		SessionFactory sessions = cfg.buildSessionFactory();
-//		Session session = sessions.openSession();
-//		Transaction tx = null;
-//		try {
-//			tx = session.beginTransaction();
-//			Query hqlQuery = session.createQuery("select u.email from model.Usuario.GestorDeContenidos c where c.class = 'PELICULA'");
-//			hqlQuery.setParameter("number", number);
-//			List<String> list = (List<String>) hqlQuery.list();
-//			session.flush();
-//			tx.commit();
-//			System.out.println("\ne. Listar los usuarios que reprodujeron más de "+number+" películas");
-//			for (String string : list) {
-//				System.out.println("El usuario con email: " + string + " ha realizado "+number+" películas.");
-//			}			
-//
-//		}catch (Exception e){
-//			e.printStackTrace();
-//			if (tx != null) {
-//				tx.rollback();
-//			}
-//			session.close();
-//		}
-//		session.disconnect() ;
+	public static void consultaE(Configuration cfg, Long number) {
+		SessionFactory sessions = cfg.buildSessionFactory();
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Query hqlQuery = session.createQuery("select u.email from Usuario u inner join u.gestor g inner join g.reproducciones r where r.reproducible.class = 'PELICULA' group by u.email having count(u.email)>:number");
+			hqlQuery.setParameter("number", number);
+			List<String> list = (List<String>) hqlQuery.list();
+			session.flush();
+			tx.commit();
+			System.out.println("\ne. Listar los usuarios que reprodujeron más de "+number+" películas");
+			for (String string : list) {
+				System.out.println("El usuario con email: " + string + " ha reproducido más de "+number+" películas.");
+			}			
+
+		}catch (Exception e){
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+			session.close();
+		}
+		session.disconnect() ;
 	}
 
 }
