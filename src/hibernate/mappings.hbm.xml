@@ -138,7 +138,7 @@
 		</id>
 		<property name="email" column="EMAIL"/>
 		<property name="fechaDeNacimiento" column="FECHA_DE_NACIMIENTO"/>
-		<one-to-one name="gestor" property-ref="usuario" cascade="all"/>	
+		<one-to-one name="gestor" class="model.GestorDeContenidos" cascade="all"/>	
 		<many-to-one name="suscripcion" column="ID_SUSCRIPCION" unique="true" not-null="true" cascade="all"/>
 		<many-to-one name="sesionActual" column="ID_SESION" unique="true" cascade="all"/>
 	</class>
