@@ -1,5 +1,6 @@
 package hibernate;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -30,6 +31,12 @@ public class BetoQueries {
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate/hibernate.cfg.xml");
 		consultaA(cfg);
+		try {
+			consultaD(cfg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -58,5 +65,31 @@ public class BetoQueries {
 		session.disconnect() ;
 	}
 	
+	public static void consultaD(Configuration cfg) throws IOException {
+		
+		int year = (int)System.in.read();
+		SessionFactory sessions = cfg.buildSessionFactory();
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Query hqlQuery = session.createQuery("from model.Reproducciones r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year");
+			hqlQuery.setParameter("year", year);
+			List<Serie> list = (List<Serie>) hqlQuery.list();
+			for ( Serie serie : list) {
+				System.out.println("Titulo de serie:" + serie.getTitulo());
+				
+			}
+			session.flush();
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+			session.close();
+		}
+		session.disconnect() ;
+	}
 
 }
