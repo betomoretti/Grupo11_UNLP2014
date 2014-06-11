@@ -78,7 +78,7 @@ public class BetoQueries {
 			tx = session.beginTransaction();
 			String hql = "select p.titulo, count(*) as cant from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year group by p.id order by cant desc";
 			Query hqlQuery = session.createQuery(hql);
-			hqlQuery.setParameter("year", year).setMaxResults(1);
+			hqlQuery.setParameter("year", year).setMaxResults(3);
 			List<Object[]> result=(List<Object[]>) hqlQuery.list();
 			session.flush();
 			tx.commit();
