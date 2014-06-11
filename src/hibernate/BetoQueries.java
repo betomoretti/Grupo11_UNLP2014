@@ -43,14 +43,14 @@ public class BetoQueries {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			String hql = "select p.titulo, count(p) as cant from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year group by p.id order by cant desc";
+			String hql = "select p.titulo, count(*) as cant from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year group by p.id order by cant desc";
 			Query hqlQuery = session.createQuery(hql);
 			hqlQuery.setParameter("year", year).setMaxResults(1);
 			List<Object[]> result=(List<Object[]>) hqlQuery.list();
 			session.flush();
 			tx.commit();
 			if (result.size() > 0) {
-				System.out.println("Pelicula mas vista " + year + " "+result.get(0) + " reproducciones" + result.get(1));
+				System.out.println("Pelicula mas vista " + year + " "+result.get(0)[0] + " reproducciones" + result.get(1)[1]);
 			} else {
 				System.out.println(result);
 			}
