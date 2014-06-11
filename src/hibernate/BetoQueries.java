@@ -70,23 +70,23 @@ public class BetoQueries {
 //		Listar las n películas más vistas en el sistema. Imprimir en consola: "La Película: "..."ha sido
 //		vista: "..."veces"
 
-		int year = (int)System.in.read();
+		int year = System.in.read();
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			String hql = "select p.titulo, max(count(p)) as cantMax from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year group by p.id";
+			String hql = "select p.titulo, count(*) as cant from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year group by p.id order by cant desc";
 			Query hqlQuery = session.createQuery(hql);
-			hqlQuery.setParameter("year", year);
-			Object result = hqlQuery.uniqueResult();
-			//List<Serie> list = (List<Serie>) hqlQuery.list();
+			hqlQuery.setParameter("year", year).setMaxResults(1);
+			List<Object[]> result=(List<Object[]>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			System.out.println("Resultado" + result);	
-//			for ( Serie serie : list) {
-//				System.out.println("Titulo de serie:" + serie.getTitulo());				
-//			}
+			if (result.size() > 0) {
+				System.out.println("Pelicula mas vista " + year + " "+result.get(0)[0] + " reproducciones" + result.get(1)[1]);
+			} else {
+				System.out.println(result);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
