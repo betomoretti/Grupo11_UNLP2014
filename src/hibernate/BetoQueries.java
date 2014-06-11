@@ -83,7 +83,7 @@ public class BetoQueries {
 			session.flush();
 			tx.commit();
 			if (result.size() > 0) {
-            	for (Object serie : list){
+            	for (Object elem : list){
                     System.out.println("Titulo de serie: " + serie.getTitulo());
                 }  
 				System.out.println("Pelicula mas vista " + year + " "+result.get(0)[0] + " reproducciones" + result.get(1)[1]);
