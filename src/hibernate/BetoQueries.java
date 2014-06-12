@@ -44,9 +44,8 @@ public class BetoQueries {
 	public static void consultaJ(Configuration cfg) throws IOException{
 		
 		BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
-		int limiteIngresado;
 		System.out.println("Ingrese la cantidad de diferencia del limite de reproducciones: ");
-		limiteIngresado = Integer.parseInt(lectura.readLine());
+		long limiteIngresado = Long.valueOf(lectura.readLine());
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
@@ -55,11 +54,11 @@ public class BetoQueries {
 			String hql = "select u.email from model.Usuario u where :limiteIngresado > (u.suscripcion.categoria.limiteDeReproducciones - (select count(*) from model.Reproduccion r where r in elements(u.gestor.reproducciones)))";
 			Query hqlQuery = session.createQuery(hql);
 			hqlQuery.setParameter("limiteIngresado", limiteIngresado);
-			List<Object[]> result=(List<Object[]>) hqlQuery.list();
+			List<String> result=(List<String>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			for (Object[] elem : result){
-            	System.out.println("Mail del usuario: " + String.valueOf(elem[0]));   
+			for (String elem : result){
+            	System.out.println("Mail del usuario: " + elem);   
             } 
 		} catch (Exception e) {
 			e.printStackTrace();

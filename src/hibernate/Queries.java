@@ -37,6 +37,7 @@ public class Queries {
 		consultaD(cfg);
 		consultaE(cfg,new Long(10));
 		consultaG(cfg);
+		consultaJ(cfg);
 	}
 	
 	/**
@@ -188,6 +189,41 @@ public class Queries {
         	for (Object[] elem : result){
             	System.out.println("Pelicula '" + elem[0] + "' vista " + elem[1] + " veces");   
             }  
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+			session.close();
+		}
+		session.disconnect() ;
+	}
+	
+	/**
+	 * Listar los usuarios que estén a menos de una cantidad dada de reproducciones para llegar
+	 * al límite de las mismas para su categoría. Imprimir en consola:"Mail del usuario: "
+	 * @param cfg
+	 * @throws IOException
+	 */
+	public static void consultaJ(Configuration cfg) throws IOException{
+		
+		BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Ingrese la cantidad de diferencia del limite de reproducciones: ");
+		long limiteIngresado = Long.valueOf(lectura.readLine());
+		SessionFactory sessions = cfg.buildSessionFactory();
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			String hql = "select u.email from model.Usuario u where :limiteIngresado > (u.suscripcion.categoria.limiteDeReproducciones - (select count(*) from model.Reproduccion r where r in elements(u.gestor.reproducciones)))";
+			Query hqlQuery = session.createQuery(hql);
+			hqlQuery.setParameter("limiteIngresado", limiteIngresado);
+			List<String> result=(List<String>) hqlQuery.list();
+			session.flush();
+			tx.commit();
+			for (String elem : result){
+            	System.out.println("Mail del usuario: " + elem);   
+            } 
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
