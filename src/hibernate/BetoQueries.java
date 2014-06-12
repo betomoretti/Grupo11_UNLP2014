@@ -30,41 +30,10 @@ public class BetoQueries {
 		// TODO Auto-generated method stub
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate/hibernate.cfg.xml");
-		consultaD(cfg);
+		consultaG(cfg);
 	}
 	
-	public static void consultaD(Configuration cfg) throws IOException {
-//		Informar la película más vista en un determinado año (donde el año es parametrizable
-// 		Imprimir en consola: "El título de la Película más vista en el año: "..." es: "
-		
-		int year = System.in.read();
-		SessionFactory sessions = cfg.buildSessionFactory();
-		Session session = sessions.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			String hql = "select p.titulo, count(*) as cant from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year group by p.id order by cant desc";
-			Query hqlQuery = session.createQuery(hql);
-			hqlQuery.setParameter("year", year).setMaxResults(1);
-			List<Object[]> result=(List<Object[]>) hqlQuery.list();
-			session.flush();
-			tx.commit();
-			if (result.size() > 0) {
-				System.out.println("Pelicula mas vista " + year + " "+result.get(0)[0] + " reproducciones" + result.get(0)[1]);
-			} else {
-				System.out.println(result);
-			}
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null) {
-				tx.rollback();
-			}
-			session.close();
-		}
-		session.disconnect() ;
-	}
+	
 	
 	public static void consultaG(Configuration cfg) throws IOException {
 //		Listar las n películas más vistas en el sistema. Imprimir en consola: "La Película: "..."ha sido
@@ -84,7 +53,7 @@ public class BetoQueries {
 			tx.commit();
 			if (result.size() > 0) {
             	for (Object elem : result){
-                	System.out.println("Pelicula mas vista " + year + " "+result[0] + " reproducciones" + result[1]);   
+                	//System.out.println("Pelicula mas vista " + year + " "+elem[0] + " reproducciones" + elem[1]);   
                 }  
 			} else {
 				System.out.println(result);

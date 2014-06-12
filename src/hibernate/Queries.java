@@ -1,5 +1,6 @@
 package hibernate;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -78,7 +79,7 @@ public class Queries {
 			List<Serie> list = (List<Serie>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			System.out.println("\nb. Listar las series cuyo t�tulo contenga la secuencia de caracteres: " +title);
+			System.out.println("\nb. Listar las series cuyo t�tulo contenga la secuencia de caracteres: " +title);
 			for (Serie serie : list) {
 				System.out.println("Titulo de serie: " + serie.getTitulo());
 			}			
@@ -94,7 +95,38 @@ public class Queries {
 	}
 	
 	/**
-	 * Lista el email de los usuarios que reprodujeron m�s de number pel�culas.
+	 * Informar la película más vista en un determinado año (donde el año es parametrizable
+	 * Imprimir en consola: "El título de la Película más vista en el año: "..." es: "
+	 * @param cfg
+	 * @throws IOException
+	 */
+	public static void consultaD(Configuration cfg){
+		
+		int year = 2013;
+		SessionFactory sessions = cfg.buildSessionFactory();
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			String hql = "select p.titulo, count(*) as cant from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year group by p.id order by cant desc";
+			Query hqlQuery = session.createQuery(hql);
+			hqlQuery.setParameter("year", year).setMaxResults(1);
+			List<Object[]> result=(List<Object[]>) hqlQuery.list();
+			session.flush();
+			tx.commit();
+			System.out.println("Pelicula mas vista de " + year + ":"+result.get(0)[0] + "(" + result.get(0)[1] + " reproducciones)");						
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+			session.close();
+		}
+		session.disconnect() ;
+	}
+	
+	/**
+	 * Lista el email de los usuarios que reprodujeron m�s de number pel�culas.
 	 * @param cfg
 	 * @param number
 	 */
@@ -109,9 +141,9 @@ public class Queries {
 			List<String> list = (List<String>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			System.out.println("\ne. Listar los usuarios que reprodujeron m�s de "+number+" pel�culas");
+			System.out.println("\ne. Listar los usuarios que reprodujeron m�s de "+number+" pel�culas");
 			for (String string : list) {
-				System.out.println("El usuario con email: " + string + " ha reproducido m�s de "+number+" pel�culas.");
+				System.out.println("El usuario con email: " + string + " ha reproducido m�s de "+number+" pel�culas.");
 			}			
 
 		}catch (Exception e){
