@@ -1,6 +1,8 @@
 package hibernate;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -26,13 +28,15 @@ import org.hibernate.cfg.Configuration;
 
 public class Queries {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate/hibernate.cfg.xml");
 		consultaA(cfg);
 		consultaB(cfg, "Sim");
+		consultaD(cfg);
 		consultaE(cfg,new Long(10));
+		consultaG(cfg);
 	}
 	
 	/**
@@ -98,11 +102,13 @@ public class Queries {
 	 * Informar la película más vista en un determinado año (donde el año es parametrizable
 	 * Imprimir en consola: "El título de la Película más vista en el año: "..." es: "
 	 * @param cfg
-	 * @throws IOException
 	 */
-	public static void consultaD(Configuration cfg){
+	public static void consultaD(Configuration cfg) throws IOException{
 		
-		int year = 2013;
+		BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
+		int year;
+		System.out.println("Ingrese año: ");
+		year = Integer.parseInt(lectura.readLine());
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
@@ -147,6 +153,42 @@ public class Queries {
 			}			
 
 		}catch (Exception e){
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+			session.close();
+		}
+		session.disconnect() ;
+	}
+	
+	/**
+	 *  Listar las n películas más vistas en el sistema. Imprimir en consola: "La Película: "..."ha sido
+	 *	vista: "..."veces"
+	 * 
+	 * @param cfg
+	 */
+	public static void consultaG(Configuration cfg) throws IOException {
+		
+		BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
+		int cant;
+		System.out.println("Cantidad de peliculas a listar: ");
+		cant = Integer.parseInt(lectura.readLine());
+		SessionFactory sessions = cfg.buildSessionFactory();
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			String hql = "select p.titulo, count(*) as cant from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id group by p.id order by cant desc";
+			Query hqlQuery = session.createQuery(hql);
+			hqlQuery.setMaxResults(cant);
+			List<Object[]> result=(List<Object[]>) hqlQuery.list();
+			session.flush();
+			tx.commit();
+        	for (Object[] elem : result){
+            	System.out.println("Pelicula '" + elem[0] + "' vista " + elem[1] + " veces");   
+            }  
+		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
 				tx.rollback();

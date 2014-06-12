@@ -1,6 +1,6 @@
 package hibernate;
 
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -30,35 +30,37 @@ public class BetoQueries {
 		// TODO Auto-generated method stub
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate/hibernate.cfg.xml");
-		consultaG(cfg);
+		consultaJ(cfg);
 	}
 	
 	
-	
-	public static void consultaG(Configuration cfg) throws IOException {
-//		Listar las n películas más vistas en el sistema. Imprimir en consola: "La Película: "..."ha sido
-//		vista: "..."veces"
 
-		int year = System.in.read();
+	/**
+	 * Listar los usuarios que estén a menos de una cantidad dada de reproducciones para llegar
+	 * al límite de las mismas para su categoría. Imprimir en consola:"Mail del usuario: "
+	 * @param cfg
+	 * @throws IOException
+	 */
+	public static void consultaJ(Configuration cfg) throws IOException{
+		
+		BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
+		int limiteIngresado;
+		System.out.println("Ingrese la cantidad de diferencia del limite de reproducciones: ");
+		limiteIngresado = Integer.parseInt(lectura.readLine());
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			String hql = "select p.titulo, count(*) as cant from model.Reproduccion r, model.Pelicula p where r.reproducible.class = 'Pelicula' and r.reproducible.id = p.id and year(r.fecha) = :year group by p.id order by cant desc";
+			String hql = "select u.email from model.Usuario u where :limiteIngresado > (u.suscripcion.categoria.limiteDeReproducciones - (select count(*) from model.Reproduccion r where r in elements(u.gestor.reproducciones)))";
 			Query hqlQuery = session.createQuery(hql);
-			hqlQuery.setParameter("year", year).setMaxResults(3);
+			hqlQuery.setParameter("limiteIngresado", limiteIngresado);
 			List<Object[]> result=(List<Object[]>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			if (result.size() > 0) {
-            	for (Object elem : result){
-                	//System.out.println("Pelicula mas vista " + year + " "+elem[0] + " reproducciones" + elem[1]);   
-                }  
-			} else {
-				System.out.println(result);
-			}
-			
+			for (Object[] elem : result){
+            	System.out.println("Mail del usuario: " + String.valueOf(elem[0]));   
+            } 
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
@@ -68,4 +70,5 @@ public class BetoQueries {
 		}
 		session.disconnect() ;
 	}
+	
 }
