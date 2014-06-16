@@ -34,9 +34,12 @@ public class Queries {
 		cfg.configure("hibernate/hibernate.cfg.xml");
 		consultaA(cfg);
 		consultaB(cfg, "Sim");
+		consultaC(cfg);
 		consultaD(cfg);
 		consultaE(cfg,new Long(10));
+		consultaF(cfg);
 		consultaG(cfg);
+		consultaI(cfg);
 		consultaJ(cfg);
 	}
 	
@@ -84,7 +87,7 @@ public class Queries {
 			List<Serie> list = (List<Serie>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			System.out.println("\nb. Listar las series cuyo t�tulo contenga la secuencia de caracteres: " +title);
+			System.out.println("\nb. Listar las series cuyo título contenga la secuencia de caracteres: " +title);
 			for (Serie serie : list) {
 				System.out.println("Titulo de serie: " + serie.getTitulo());
 			}			
@@ -97,6 +100,38 @@ public class Queries {
 			session.close();
 		}
 		session.disconnect() ;
+	}
+
+	/**
+	* Listar los 5 episodios de series más vistos en el sistema.
+	* Imprimir en consola: "La Serie:" ..."ha sido vista "...."veces"
+	* @param cfg
+	**/
+	public static void consultaC(Configuration cfg) throws IOException{
+		SessionFactory sessions = cfg.buildSessionFactory();
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			System.out.println("\nC) Listar los 5 episodios de series más vistos en el sistema.");
+			String hql = "select e.titulo, count(*) as cant from model.Reproduccion r, model.Episodio e where r.reproducible.class = 'Episodio' and r.reproducible.id = e.id group by e.id order by cant desc";
+			tx = session.beginTransaction();
+			Query hqlQuery = session.createQuery(hql);
+			hqlQuery.setMaxResults(5);
+			List<Object[]> result=(List<Object[]>) hqlQuery.list();
+			session.flush();
+			tx.commit();
+
+			for (Object []r : result) {
+				System.out.println("Episodio '" + r[0] +"' has sido visto " + r[1] + " veces");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+			session.close();
+		}
+		session.disconnect();
 	}
 	
 	/**
@@ -129,7 +164,7 @@ public class Queries {
 			}
 			session.close();
 		}
-		session.disconnect() ;
+		session.disconnect();
 	}
 	
 	/**
@@ -162,7 +197,39 @@ public class Queries {
 		}
 		session.disconnect() ;
 	}
-	
+
+	/**
+	* Listar los usuarios que vieron al menos un episodio por menos de 65 segundos (65000 milisegundos).
+	* Imprimir en consola: "Mail del usuario: "
+	*
+	* @param cfg
+	**/
+	public static void consultaF(Configuration cfg) throws IOException{
+		SessionFactory sessions = cfg.buildSessionFactory();
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			System.out.println("\nD) Listar los usuarios que vieron al menos un episodio por menos de 65 segundos (65000 milisegundos)");
+			tx = session.beginTransaction();
+			String hql = "select distinct u.email from Usuario u inner join u.gestor g inner join g.reproducciones r where r.reproducible.class = 'EPISODIO' and r.tiempo < 65000";
+			Query hqlQuery = session.createQuery(hql);
+			List<String> result = (List<String>) hqlQuery.list();
+			session.flush();
+			tx.commit();
+
+			for (String email : result) {
+				System.out.println("Mail del usuario: '" + email);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+			session.close();
+		}
+		session.disconnect();
+	}
+
 	/**
 	 *  Listar las n películas más vistas en el sistema. Imprimir en consola: "La Película: "..."ha sido
 	 *	vista: "..."veces"
@@ -197,6 +264,38 @@ public class Queries {
 			session.close();
 		}
 		session.disconnect() ;
+	}
+
+	/**
+	* Listar usuarios que reprodujeron al menos una película cuya edad mínima sea 12 años.
+	* Imprimir en consola: "Mail del usuario: "
+	*
+	* @param cfg
+	**/
+	public static void consultaI(Configuration cfg) throws IOException{
+		SessionFactory sessions = cfg.buildSessionFactory();
+		Session session = sessions.openSession();
+		Transaction tx = null;
+		try {
+			System.out.println("\nI) Listar usuarios que reprodujeron al menos una película cuya edad mínima sea 12 años");
+			tx = session.beginTransaction();
+			String hql = "select distinct u.email from Usuario u inner join u.gestor g inner join g.reproducciones r, model.Pelicula p where r.reproducible.class = 'PELICULA' and p.id = r.reproducible.id and p.edadMinima = 12";
+			Query hqlQuery = session.createQuery(hql);
+			List<String> result = (List<String>) hqlQuery.list();
+			session.flush();
+			tx.commit();
+
+			for (String email : result) {
+				System.out.println("Mail del usuario: '" + email);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+			session.close();
+		}
+		session.disconnect();
 	}
 	
 	/**
