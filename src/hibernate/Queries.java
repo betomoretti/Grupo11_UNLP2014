@@ -48,6 +48,7 @@ public class Queries {
 	 * @param cfg
 	 */
 	public static void consultaA(Configuration cfg) {
+		System.out.println("\nA) Listar el nombre de todas las series del sistema.");
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
@@ -57,11 +58,11 @@ public class Queries {
 			List<Serie> list = (List<Serie>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			System.out.println("\na. Listar el nombre de todas las series del sistema.");
+
 			for (Serie serie : list){
 				System.out.println("Titulo de serie: " + serie.getTitulo());
 			}
-			System.out.println();
+
 		}catch (Exception e){
 			e.printStackTrace();
 			if (tx != null){
@@ -69,6 +70,8 @@ public class Queries {
 			}
 			session.close();
 		}
+
+		System.out.println();
 		session.disconnect() ;
 	}
 	/**
@@ -77,6 +80,7 @@ public class Queries {
 	 * @param title
 	 */
 	public static void consultaB(Configuration cfg, String title) {
+		System.out.println("\nB) Listar las series cuyo título contenga la secuencia de caracteres: " + title);
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
@@ -87,11 +91,11 @@ public class Queries {
 			List<Serie> list = (List<Serie>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			System.out.println("\nb. Listar las series cuyo título contenga la secuencia de caracteres: " +title);
+
 			for (Serie serie : list) {
 				System.out.println("Titulo de serie: " + serie.getTitulo());
-			}			
-			System.out.println();
+			}
+
 		}catch (Exception e){
 			e.printStackTrace();
 			if (tx != null) {
@@ -99,6 +103,8 @@ public class Queries {
 			}
 			session.close();
 		}
+
+		System.out.println();
 		session.disconnect() ;
 	}
 
@@ -108,11 +114,11 @@ public class Queries {
 	* @param cfg
 	**/
 	public static void consultaC(Configuration cfg) throws IOException{
+		System.out.println("\nC) Listar los 5 episodios de series más vistos en el sistema.");
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
 		try {
-			System.out.println("\nC) Listar los 5 episodios de series más vistos en el sistema.");
 			String hql = "select e.titulo, count(*) as cant from model.Reproduccion r, model.Episodio e where r.reproducible.class = 'Episodio' and r.reproducible.id = e.id group by e.id order by cant desc";
 			tx = session.beginTransaction();
 			Query hqlQuery = session.createQuery(hql);
@@ -124,6 +130,7 @@ public class Queries {
 			for (Object []r : result) {
 				System.out.println("Episodio '" + r[0] +"' has sido visto " + r[1] + " veces");
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
@@ -131,6 +138,8 @@ public class Queries {
 			}
 			session.close();
 		}
+
+		System.out.println();
 		session.disconnect();
 	}
 	
@@ -140,7 +149,7 @@ public class Queries {
 	 * @param cfg
 	 */
 	public static void consultaD(Configuration cfg) throws IOException{
-		
+		System.out.println("\nD)Informar la película más vista en un determinado año (donde el año es parametrizable).");
 		BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
 		int year;
 		System.out.println("Ingrese año: ");
@@ -156,7 +165,9 @@ public class Queries {
 			List<Object[]> result=(List<Object[]>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			System.out.println("Pelicula mas vista de " + year + ":"+result.get(0)[0] + "(" + result.get(0)[1] + " reproducciones)");						
+
+			System.out.println("Pelicula mas vista de " + year + ":" + result.get(0)[0] + "(" + result.get(0)[1] + " reproducciones)\n");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
@@ -173,6 +184,8 @@ public class Queries {
 	 * @param number
 	 */
 	public static void consultaE(Configuration cfg, Long number) {
+		System.out.println("\nE) Listar los usuarios que reprodujeron mas de " + number + " peliculas.");
+
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
@@ -183,10 +196,10 @@ public class Queries {
 			List<String> list = (List<String>) hqlQuery.list();
 			session.flush();
 			tx.commit();
-			System.out.println("\ne. Listar los usuarios que reprodujeron m�s de "+number+" pel�culas");
+
 			for (String string : list) {
-				System.out.println("El usuario con email: " + string + " ha reproducido m�s de "+number+" pel�culas.");
-			}			
+				System.out.println("El usuario con email: " + string + " ha reproducido mas de " + number + " peliculas.");
+			}
 
 		}catch (Exception e){
 			e.printStackTrace();
@@ -195,6 +208,8 @@ public class Queries {
 			}
 			session.close();
 		}
+
+		System.out.println();
 		session.disconnect() ;
 	}
 
@@ -205,11 +220,11 @@ public class Queries {
 	* @param cfg
 	**/
 	public static void consultaF(Configuration cfg) throws IOException{
+		System.out.println("\nD) Listar los usuarios que vieron al menos un episodio por menos de 65 segundos (65000 milisegundos)");
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
 		try {
-			System.out.println("\nD) Listar los usuarios que vieron al menos un episodio por menos de 65 segundos (65000 milisegundos)");
 			tx = session.beginTransaction();
 			String hql = "select distinct u.email from Usuario u inner join u.gestor g inner join g.reproducciones r where r.reproducible.class = 'EPISODIO' and r.tiempo < 65000";
 			Query hqlQuery = session.createQuery(hql);
@@ -220,6 +235,7 @@ public class Queries {
 			for (String email : result) {
 				System.out.println("Mail del usuario: '" + email);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
@@ -227,6 +243,8 @@ public class Queries {
 			}
 			session.close();
 		}
+
+		System.out.println();
 		session.disconnect();
 	}
 
@@ -253,9 +271,11 @@ public class Queries {
 			List<Object[]> result=(List<Object[]>) hqlQuery.list();
 			session.flush();
 			tx.commit();
+
         	for (Object[] elem : result){
             	System.out.println("Pelicula '" + elem[0] + "' vista " + elem[1] + " veces");   
-            }  
+            }
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
@@ -263,6 +283,8 @@ public class Queries {
 			}
 			session.close();
 		}
+
+		System.out.println();
 		session.disconnect() ;
 	}
 
@@ -295,6 +317,8 @@ public class Queries {
 			}
 			session.close();
 		}
+
+		System.out.println();
 		session.disconnect();
 	}
 	
@@ -305,9 +329,9 @@ public class Queries {
 	 * @throws IOException
 	 */
 	public static void consultaJ(Configuration cfg) throws IOException{
-		
-		BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Ingrese la cantidad de diferencia del limite de reproducciones: ");
+
+		BufferedReader lectura = new BufferedReader(new InputStreamReader(System.in));
 		long limiteIngresado = Long.valueOf(lectura.readLine());
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
@@ -320,6 +344,7 @@ public class Queries {
 			List<String> result=(List<String>) hqlQuery.list();
 			session.flush();
 			tx.commit();
+
 			for (String elem : result){
             	System.out.println("Mail del usuario: " + elem);   
             } 
@@ -330,6 +355,8 @@ public class Queries {
 			}
 			session.close();
 		}
+
+		System.out.println();
 		session.disconnect() ;
 	}
 
