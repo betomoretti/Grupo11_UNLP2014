@@ -69,14 +69,15 @@ public class Queries {
 			}
 			System.out.println();
 
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null){
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect();
+
 	}
 	/**
 	 * Lista el nombre de todas las series del sistema que contienen el string title.
@@ -100,15 +101,14 @@ public class Queries {
 				System.out.println("Título de serie: " + serie.getTitulo());
 			}
 			System.out.println();
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-
-		session.disconnect() ;
 	}
 
 	/**
@@ -139,9 +139,9 @@ public class Queries {
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect();
 	}
 	
 	/**
@@ -168,9 +168,9 @@ public class Queries {
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect();
 	}
 	
 	/**
@@ -179,8 +179,6 @@ public class Queries {
 	 * @param number
 	 */
 	public static void consultaE(Configuration cfg, Long number) {
-		System.out.println("\nE) Listar los usuarios que reprodujeron mas de " + number + " peliculas.\n");
-
 		SessionFactory sessions = cfg.buildSessionFactory();
 		Session session = sessions.openSession();
 		Transaction tx = null;
@@ -197,14 +195,14 @@ public class Queries {
 				System.out.println("El usuario '" + object[0] + "' ha realizado "+object[1]+" reproducciones.");
 			}
 			System.out.println();
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect() ;
 	}
 
 	/**
@@ -228,14 +226,14 @@ public class Queries {
 				System.out.println("Mail del usuario: " + string);
 			}			
 			System.out.println();
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect();
 	}
 	
 	/**
@@ -269,9 +267,9 @@ public class Queries {
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect() ;
 	}
 
 	/*
@@ -303,9 +301,9 @@ public class Queries {
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect();
 	}
 	
 
@@ -338,9 +336,9 @@ public class Queries {
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect();
 	}
 	
 	/**
@@ -371,9 +369,9 @@ public class Queries {
 			if (tx != null) {
 				tx.rollback();
 			}
+		} finally {
 			session.close();
 		}
-		session.disconnect() ;
 	}
 
 }
